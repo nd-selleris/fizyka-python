@@ -17,7 +17,7 @@ def pokaz():
         st.success(f'Predkosc srednia: {wynik:.2f} km/h')
 
         st.markdown('### Oblicz droge')
-        predkosc = st.number_input('Predkosc (km/h)',min_value=0.0,value=50.0 step=0.5)
+        predkosc = st.number_input('Predkosc (km/h)',min_value=0.0,value=50.0,step=0.5)
         czas2 = st.number_input('Czas ruchu (h)', min_value=0.0, value=2.0,step=0.5,key='czas2')
 
         if st.button('Oblicz droge'):
