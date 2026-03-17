@@ -9,7 +9,7 @@ okno = pygame.display.set_mode((szerokosc,wysokosc))
 pygame.display.set_caption('Ruch jednostajny')
 
 czcionka = pygame.font.SysFont(None,32)
-zegar=pygame.time.clock()
+zegar=pygame.time.Clock()
 
 x_start=50
 y_samochodu=260
@@ -45,9 +45,9 @@ while True:
     pygame.draw.circle(okno,(0,0,0),(x_samochodu+15,y_samochodu+30),8)
     pygame.draw.circle(okno,(0,0,0),(x_samochodu+45,y_samochodu+30),8)
 
-    tekst1=czcionka.render(f'Predkosc: {predkosc} j/s',True,(0,0,0))
+    tekst1=czcionka.render(f'Predkosc: {predkosc} m/s',True,(0,0,0))
     tekst2=czcionka.render(f'Czas: {czas} s',True,(0,0,0))
-    tekst3=czcionka.render(f'Droga: {predkosc*czas} j',True,(0,0,0))
+    tekst3=czcionka.render(f'Droga: {predkosc*czas} m',True,(0,0,0))
 
     okno.blit(tekst1,(30,30))
     okno.blit(tekst2,(30,70))

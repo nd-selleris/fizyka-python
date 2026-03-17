@@ -9,7 +9,7 @@ def pokaz():
     st.markdown('### Wzor')
     st.latex(r'v = \frac{s}{t}')
 
-    droga = st.number_imput('Droga(km)', min_value=0.0, value=100.0, step=10.0)
+    droga = st.number_input('Droga(km)', min_value=0.0, value=100.0, step=10.0)
     czas=st.number_input('Czas (h)', min_value=0.1, value=2.0, step=0.5)
 
     if st.button('Oblicz predkosc srednia'):
