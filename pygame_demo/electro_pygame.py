@@ -29,20 +29,37 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            print("Mouse click:", event.pos)
+            mouse_pos=event.pos
 
-    okno.fill(white)
-    title=big_font.render("Main menu",True,black)
-    okno.blit(title,(360,120))
-    
-    pygame.draw.rect(okno,green,start_button)    
-    pygame.draw.rect(okno,red,exit_button)
+            if start_button.collidepoint(mouse_pos):
+                print("Start")
+                state="simulation"
+            if exit_button.collidepoint(mouse_pos):
+                print("Exit")
+                pygame.quit()
+                sys.exit()
+ 
+    if state=="menu":
+        okno.fill(white)
+        title=big_font.render("Main menu",True,black)
+        okno.blit(title,(360,120))
+        
+        pygame.draw.rect(okno,green,start_button)    
+        pygame.draw.rect(okno,red,exit_button)
 
-    start_text=small_font.render("Start",True,black)
-    exit_text=small_font.render("Exit",True,black)
+        start_text=small_font.render("Start",True,black)
+        exit_text=small_font.render("Exit",True,black)
 
-    okno.blit(start_text,(360,240))
-    okno.blit(exit_text,(360,330))
+        okno.blit(start_text,(360,240))
+        okno.blit(exit_text,(360,330))
+    elif state=="simulation":
 
+
+        okno.fill(white)
+        sim_text=big_font.render("Simulation screen",True,black)
+        okno.blit(sim_text,( 305,25))
 
 
 
