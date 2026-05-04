@@ -17,7 +17,7 @@ black=(0,0,0)
 yellow=(255,255,0)
 purple=(255,0,255)
 cyan=(0,255,255)
-
+grey=(211,211,211)
 
 big_font = pygame.font.SysFont(None,48)
 small_font = pygame.font.SysFont(None,32)
@@ -79,7 +79,7 @@ while True:
 
         pygame.draw.ellipse(okno,purple,battery)
         pygame.draw.rect(okno,cyan,switch_button)
-        pygame.draw.rect(okno,yellow,light)
+        pygame.draw.rect(okno,grey,light)
 
         battery_text=small_font.render("Battery",True,black)
         light_text=small_font.render("Light",True,black)
@@ -88,6 +88,21 @@ while True:
         okno.blit(battery_text,(500,300))   
         okno.blit(light_text,(375,175))
         okno.blit(switch_text,(250,300))
+
+    count=100
+    counting=False
+
+
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        switch_button.collidepoint(event.pos)
+        light=(yellow)
+        counting=True
+
+
+
+
+
+
 
     pygame.display.flip()
     zegar.tick(60)
