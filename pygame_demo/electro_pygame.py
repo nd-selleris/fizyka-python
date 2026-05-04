@@ -24,8 +24,8 @@ small_font = pygame.font.SysFont(None,32)
 
 state="menu"
 switch=False 
-battery=100
-
+battery_count=100
+counting=False
 start_button=pygame.Rect(340,220,220,60)
 exit_button=pygame.Rect(340,310,220,60)
 back_button=pygame.Rect(0,0,75,30)
@@ -49,9 +49,19 @@ while True:
                 print("Exit")
                 pygame.quit()
                 sys.exit()
-
+            
             if back_button.collidepoint(mouse_pos):
                 state="menu"
+
+            if switch_button.collidepoint(mouse_pos):
+                if switch == True:
+                    switch=False
+                elif switch == False:
+                    switch=True
+
+
+
+
 
     if state=="menu":
         okno.fill(white)
@@ -68,6 +78,7 @@ while True:
         okno.blit(exit_text,(360,330))
 
     elif state=="simulation":
+        counting=False
         okno.fill(white)
         sim_text=big_font.render("Simulation screen",True,black)
         okno.blit(sim_text,( 305,25))
@@ -79,26 +90,30 @@ while True:
 
         pygame.draw.ellipse(okno,purple,battery)
         pygame.draw.rect(okno,cyan,switch_button)
-        pygame.draw.rect(okno,grey,light)
+
+        if switch==True:
+            pygame.draw.rect(okno,yellow,light)
+        elif switch==False:
+            pygame.draw.rect(okno,grey,light)
 
         battery_text=small_font.render("Battery",True,black)
+        battery_text_procent=small_font.render(str(battery_count)+"%",True,black)
         light_text=small_font.render("Light",True,black)
         switch_text=small_font.render("Switch",True,black)
         
         okno.blit(battery_text,(500,300))   
         okno.blit(light_text,(375,175))
         okno.blit(switch_text,(250,300))
+        okno.blit(battery_text_procent,(500,375))
 
-    count=100
-    counting=False
+        if switch==True:
+            battery_count=battery_count-1
+            okno.blit(battery_text_procent,(500,375))
+        if battery_count<1:
+            pygame.draw.ellipse(okno,red,battery)
+            battery_count=0
 
-
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        switch_button.collidepoint(event.pos)
-        light=(yellow)
-        counting=True
-
-
+        
 
 
 
